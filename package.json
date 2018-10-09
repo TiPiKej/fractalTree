@@ -1,0 +1,23 @@
+{
+  "name": "fractaltree",
+  "version": "1.0.0",
+  "description": "Fractal tree",
+  "homepage": "https://tipikej.github.io/fractalTree/",
+  "main": "sketch.js",
+  "scripts": {
+    "deploy": "gh-pages -d dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TiPiKej/fractalTree.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TiPiKej/fractalTree/issues"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}
