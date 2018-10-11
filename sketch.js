@@ -2,8 +2,11 @@ const canvasWidth = 600;
 const canvasHeight = 500;
 
 let sliderDegree, sliderLength, sliderCutLen, sliderDensity;
+let randomBool = false;
 
 function setup() {
+  // frameRate(1);
+
   createCanvas(canvasWidth, canvasHeight);
 
   createP("Rotate degree");
@@ -17,6 +20,18 @@ function setup() {
 
   createP("Branch density");
   sliderDensity = createSlider(4, 10, 5);
+
+  createP("");
+  const checkboxRandom = createCheckbox("Random branches");
+  checkboxRandom.changed(() => {
+    if (checkboxRandom.checked()) {
+      randomBool = true;
+      frameRate(1);
+    } else {
+      randomBool = false;
+      frameRate(60);
+    }
+  });
 }
 
 function draw() {
@@ -33,7 +48,8 @@ function draw() {
     degree,
     lineLength,
     cuttingLength,
-    density
+    density,
+    randomBool
   });
 
   tree.draw();
