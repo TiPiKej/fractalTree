@@ -1,19 +1,37 @@
-function drawLine(length = startingLengthLine, dir = "center") {
-  const rad =
-    dir === "center"
-      ? 0
-      : dir === "right"
-        ? degree
-        : dir === "left"
-          ? -degree
-          : NULL;
-  push();
-  rotate(rad);
-  line(0, 0, 0, -length);
-  translate(0, -length);
-  if (length > 5) {
-    drawLine(length * cuttingLength, "right");
-    drawLine(length * cuttingLength, "left");
+class drawLine {
+  constructor({ start, end, degree, lineLength, cuttingLength, density }) {
+    this.start = start;
+    this.end = end;
+    this.degree = degree;
+    this.lineLength = lineLength;
+    this.cuttingLength = cuttingLength;
+    this.density = density;
   }
-  pop();
+
+  draw() {
+    line(this.start.x, this.start.y, this.end.x, this.end.y);
+
+    if (this.lineLength > 5) {
+      this.branch("left");
+      this.branch("right");
+    }
+  }
+
+  branch(rot) {
+    let dir = p5.Vector.sub(this.end, this.start);
+    dir.rotate(rot === "right" ? this.degree : -this.degree);
+    dir.mult(this.cuttingLength);
+
+    let newEnd = p5.Vector.add(this.end, dir);
+    const miniBranch = new drawLine({
+      start: this.end,
+      end: newEnd,
+      degree: this.degree,
+      lineLength: this.lineLength - this.density,
+      cuttingLength: this.cuttingLength,
+      density: this.density
+    });
+
+    miniBranch.draw();
+  }
 }
