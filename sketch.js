@@ -22,15 +22,23 @@ function setup() {
   sliderDensity = createSlider(4, 10, 5);
 
   createP("");
-  const checkboxRandom = createCheckbox("Random branches");
-  checkboxRandom.changed(() => {
-    if (checkboxRandom.checked()) {
-      randomBool = true;
-      frameRate(1);
-    } else {
-      randomBool = false;
-      frameRate(60);
-    }
+  const checkboxRandom = createButton("Random branches");
+
+  createP("");
+  const checkboxReset = createButton("Reset to default");
+
+  checkboxRandom.mousePressed(() => {
+    randomBool = true;
+    frameRate(1);
+    setTimeout(() => {
+      frameRate(0);
+    }, 1000);
+    console.log("click");
+  });
+
+  checkboxReset.mousePressed(() => {
+    randomBool = false;
+    frameRate(60);
   });
 }
 
@@ -53,4 +61,5 @@ function draw() {
   });
 
   tree.draw();
+  // console.log(tree.ranArr());
 }
