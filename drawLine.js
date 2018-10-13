@@ -6,7 +6,9 @@ class drawLine {
     lineLength,
     cuttingLength,
     density,
-    randomBool
+    randomDegree,
+    randomCutting,
+    randomDensity
   }) {
     this.start = start;
     this.end = end;
@@ -14,7 +16,9 @@ class drawLine {
     this.lineLength = lineLength;
     this.cuttingLength = cuttingLength;
     this.density = density;
-    this.randomBool = randomBool;
+    this.randomDegree = randomDegree;
+    this.randomCutting = randomCutting;
+    this.randomDensity = randomDensity;
   }
 
   draw() {
@@ -29,7 +33,9 @@ class drawLine {
   branch(rot) {
     let dir = p5.Vector.sub(this.end, this.start);
 
-    if (this.randomBool) this.degree = random(PI / 64, PI / 4);
+    if (this.randomDegree) this.degree = random(PI / 64, PI / 4);
+    if (this.randomCutting) this.cuttingLength = random(0.6, 0.8);
+    if (this.randomDensity) this.density = random(4, 10);
 
     dir.rotate(rot === "right" ? this.degree : -this.degree);
     dir.mult(this.cuttingLength);
@@ -42,7 +48,7 @@ class drawLine {
       lineLength: this.lineLength - this.density,
       cuttingLength: this.cuttingLength,
       density: this.density,
-      randomBool: this.randomBool
+      randomDegree: this.randomDegree
     });
 
     miniBranch.draw();
