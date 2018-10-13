@@ -33,7 +33,6 @@ function setup() {
     setTimeout(() => {
       frameRate(0);
     }, 1000);
-    console.log("click");
   });
 
   checkboxReset.mousePressed(() => {
