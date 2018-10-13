@@ -29,7 +29,7 @@ function setup() {
 
   checkboxRandom.mousePressed(() => {
     randomBool = true;
-    frameRate(1);
+    frameRate(60);
     setTimeout(() => {
       frameRate(0);
     }, 1000);
